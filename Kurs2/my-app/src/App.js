@@ -4,16 +4,26 @@ import {Navbar, NavbarBrand } from 'reactstrap'
 import Menu from './components/MenuComponents'
 import './App.css'
 import { DISHES } from './shared/dishes'
-import Main from './components/MainComponents';
+import Main from './components/MainComponents'
+import DishDetail from './components/DishdetailComponent'
+import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { ConfigureStore } from './redux/configureStore'
+
+const store = ConfigureStore();
 
 class App extends Component {
 
-  render() {
+  render () {
     return (
-      <div className="App">
-        <Main />
-      </div>
-    );
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className='App'>
+            <Main />
+          </div>
+        </BrowserRouter>
+      </Provider>
+    )
   }
 
   render () {
