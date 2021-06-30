@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('./cors')
 
 const Leaders = require('../models/leader');
 
@@ -9,8 +10,8 @@ const leaderRouter = express.Router();
 leaderRouter.use(bodyParser.json());
 
 leaderRouter.route('/')
-.get((req,res,next) => {
-    Leaders.find({})
+.get(cors.cors, (req,res,next) => {
+    Leaders.find(req.query)
     .then((leaders) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
